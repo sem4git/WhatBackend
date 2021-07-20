@@ -7,6 +7,12 @@ pipeline {
 		}	
     stages {
 stage('SonarQube Analysis') {
+	agent {
+        docker {
+            image 'openjdk' 
+            args '-p 3000:3000 --network host' 
+        }
+    }
 	 environment {
             scannerHome = tool 'SonarScanner for MSBuild'
         }
