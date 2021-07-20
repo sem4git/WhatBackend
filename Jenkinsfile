@@ -8,11 +8,8 @@ pipeline {
 		}	
     stages {
 stage('SonarQube Analysis') {
-	environment {
-    scannerHome = tool 'SonarQubeScanner'
-	}
 	steps {
-    withSonarQubeEnv() {
+    withSonarQubeEnv('SonarScanner for MSBuild') {
       sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin /k:\"what-api\""
       sh "dotnet build CharlieBackend.Api"
       sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll end"
