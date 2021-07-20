@@ -1,10 +1,5 @@
 pipeline {
-	agent {
-		docker {
-			image 'mcr.microsoft.com/dotnet/core/sdk:3.1'
-			args '--network host'
-			}
-		}	
+	agent any
     stages {
 stage('SonarQube Analysis') {
 	steps {
