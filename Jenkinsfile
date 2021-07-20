@@ -1,3 +1,4 @@
+def scannerHome = tool 'SonarScanner for MSBuild'
 pipeline {
 	agent {
 		docker {
@@ -7,7 +8,6 @@ pipeline {
 		}	
     stages {
 stage('SonarQube Analysis') {
-    def scannerHome = tool 'SonarScanner for MSBuild'
 	steps {
     withSonarQubeEnv() {
       sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin /k:\"what-api\""
