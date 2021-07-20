@@ -7,14 +7,12 @@ pipeline {
 		}	
     stages {
 		stage('Build Api') {
-            steps {
-		    	def scannerHome = tool 'SonarScanner for MSBuild'
+	def scannerHome = tool 'SonarScanner for MSBuild'
 		    whithSonarQubeEnv() {
 			    sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin /k:\"what-api\"" 
 				sh 'dotnet build CharlieBackend.Api'
 			    sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll end"
 		    }
-		}
             }
 		stage('Build AdminPanel') {
 			steps {
