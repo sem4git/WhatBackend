@@ -1,4 +1,3 @@
-def scannerHome = tool 'SonarScanner for MSBuild'
 pipeline {
 	agent {
 		docker {
