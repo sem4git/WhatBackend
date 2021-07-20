@@ -8,6 +8,9 @@ pipeline {
 		}	
     stages {
 stage('SonarQube Analysis') {
+	environment {
+    scannerHome = tool 'SonarQubeScanner'
+	}
 	steps {
     withSonarQubeEnv() {
       sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin /k:\"what-api\""
