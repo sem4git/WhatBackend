@@ -6,7 +6,7 @@ stage('SonarQube Analysis') {
             scannerHome = tool 'SonarScanner for MSBuild'
         }
 	steps {
-    withSonarQubeEnv('SonarScanner for MSBuild') {
+    withSonarQubeEnv('sonar') {
       sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin /k:\"what-api\""
       sh "dotnet build CharlieBackend.Api"
       sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll end"
