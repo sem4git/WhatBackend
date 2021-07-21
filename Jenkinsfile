@@ -21,6 +21,8 @@ stage('Build API') {
 	    stage('Publish') {
 		    steps {
 			   sh 'dotnet publish CharlieBackend.Api'
+			   sh 'tar czvf publish.tar ./CharlieBackend.Api/bin/Debug/netcoreapp3.1/publish/'
+			   curl -v --user 'admin:zxczxc' --upload-file ./publish.tar http://nexus-loadb-27omuynaly1z-837220146.us-east-2.elb.amazonaws.com/repository/what-api/publish.tar'
 		    }
 	    }
     }
