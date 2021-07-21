@@ -21,7 +21,8 @@ stage('Build API') {
 				}
 			}
 		}
-		stage('UnitTest Api') {			
+	}
+	stage('UnitTest Api') {			
 			steps {
 				sh 'dotnet test .'
 			}
