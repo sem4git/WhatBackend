@@ -3,7 +3,8 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
-
+terraform/back/.terraform.lock.hcl
+terraform/back/.terraform/
 # ingore log files
 log*.txt
 
