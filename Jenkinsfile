@@ -8,9 +8,17 @@ stage('Build API') {
       sh "dotnet build CharlieBackend.Api"
       }
 }
-		stage('Build AdminPanel') {
-			steps {
-				sh 'dotnet build CharlieBackend.AdminPanel'
+	stage('Build AdminPanel') {
+		environment {
+            		scannerHome = tool 'SonarScanner for MSBuild'
+        	}
+		steps {
+    			withSonarQubeEnv('sonar') {
+				steps {
+					sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin /k:\"what-api\""
+      					sh "dotnet build CharlieBackend.Api"
+      					sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll end"
+				}
 			}
 		}
 		stage('UnitTest Api') {			
