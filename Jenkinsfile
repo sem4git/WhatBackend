@@ -1,12 +1,13 @@
 pipeline {
-	agent {
-		label 'docker-dotnet'
-		}	
+	agent any	
     stages {
 stage('SonarQube Analysis') {
 	 environment {
             scannerHome = tool 'SonarScanner for MSBuild'
         }
+	agent {
+		label 'docker-dotnet'
+	}
 	steps {
     withSonarQubeEnv('sonar') {
       sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin /k:\"what-api\""
