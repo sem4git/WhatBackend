@@ -23,5 +23,6 @@ stage('Build API') {
 		    steps {
 			   sh 'dotnet publish CharlieBackend.Api'
 		    }
+	    }
     }
 }
