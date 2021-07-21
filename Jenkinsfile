@@ -5,7 +5,7 @@ pipeline {
     stages {
 stage('SonarQube Analysis') {
 	steps {
-		sh 'ping http://nexus-loadb-27omuynaly1z-837220146.us-east-2.elb.amazonaws.com/'
+		sh 'curl http://nexus-loadb-27omuynaly1z-837220146.us-east-2.elb.amazonaws.com/'
       sh "dotnet build CharlieBackend.Api"
       }
 }
