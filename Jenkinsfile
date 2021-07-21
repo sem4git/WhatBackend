@@ -1,13 +1,13 @@
 pipeline {
-		agent {
-			label 'docker-dotnet'
+	agent {
+		label 'docker-dotnet'
 	}	
     stages {
-stage('Build API') {
+	stage('Build API') {
 	steps {
-      sh "dotnet build CharlieBackend.Api"
-      }
-}
+      		sh "dotnet build CharlieBackend.Api"
+      		}
+	}
 	stage('Build AdminPanel') {
 		environment {
             		scannerHome = tool 'SonarScanner for MSBuild'
