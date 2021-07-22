@@ -10,5 +10,9 @@ variable "instance_type" {
   type        = string
   default     = "t2.micro"
 }
-
+variable "what_dbsg" {
+  description = "DB Subnet Group"
+  type        = string
+  default     = "sonarqube-dbsubnetgroup-nsf2euex6ez5"
+}
 

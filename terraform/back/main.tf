@@ -7,11 +7,11 @@ terraform {
     # kms_key_id = "THE_ID_OF_THE_KMS_KEY"
   }
 }
-resource "random_string" "rds_password_back" {
-  length           = 16
-  special          = true
-  override_special = "!#*&"
-}
+# resource "random_string" "rds_password_back" {
+#   length           = 16
+#   special          = true
+#   override_special = "!#*&"
+# }
 provider "aws" {
   region = var.region
   default_tags {
@@ -73,16 +73,16 @@ resource "aws_launch_configuration" "what_back" {
 resource "aws_autoscaling_group" "what_back" {
   name                 = "${aws_launch_configuration.what_back.name}-ASG"
   launch_configuration = aws_launch_configuration.what_back.id
-  min_size             = 2
-  max_size             = 2
-  min_elb_capacity     = 2
+  min_size             = 1
+  max_size             = 1
+  min_elb_capacity     = 1
   vpc_zone_identifier  = [data.aws_subnet.what_pub_subnet_a.id, data.aws_subnet.what_pub_subnet_b.id]
-  health_check_type    = "ELB"
+  health_check_type    = "EC2"
   load_balancers       = [aws_elb.what_back.id]
 
-  lifecycle {
-    create_before_destroy = true
-  }
+  # lifecycle {
+  #   create_before_destroy = true
+  # }
   # launch_template {
   #   id      = aws_launch_template.what_back.id
   #   # version = "$Latest"
@@ -136,13 +136,13 @@ resource "aws_elb" "what_back" {
 # resource "aws_db_instance" "db_backend" {
 #   allocated_storage    = 10
 #   engine               = "mysql"
-#   engine_version       = "5.7"
+#   engine_version       = "8.0"
 #   instance_class       = "db.t2.micro"
 #   name                 = "WhatProd"
 #   username             = "root"
-#   password             = random_string.rds_password_back.result
-#   parameter_group_name = "default.mysql5.7"
+#   password             = data.aws_ssm_parameter.rds_password_back.value
+#   parameter_group_name = "default.mysql8.0"
 #   skip_final_snapshot  = true
 #   apply_immediately    = true
-#   db_subnet_group_name = aws_db_subnet_group.what_dbsg.name
+#   db_subnet_group_name = var.what_dbsg
 # }

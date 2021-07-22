@@ -1,7 +1,7 @@
 output "latest_ubuntu_ami_id" {
   value = data.aws_ami.latest_ubuntu.id
 }
-output "what_front_loadbalancer_url" {
+output "what_back_loadbalancer_url" {
   value = aws_elb.what_back.dns_name
 }
 output "zones" {
@@ -25,6 +25,3 @@ output "our_sub_priv_a" {
 output "our_sub_priv_b" {
   value = data.aws_subnet.what_private_subnet_b.cidr_block
 }
-# output "our_what_dbsg" {
-#   value = data.aws_db_subnet_group.what_dbsg
-# }

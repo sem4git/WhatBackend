@@ -34,8 +34,6 @@ data "aws_subnet" "what_private_subnet_b" {
     Name = "Private_Subnet_2-VPC"
   }
 }
-# data "aws_db_subnet_group" "what_dbsg" {
-#   # tags = {
-#   #   Name = "Private_Subnet_2-VPC"
-#   # }
-# }
+data "aws_ssm_parameter" "rds_password_back" {
+  name = "WhatProd-mysql"
+}

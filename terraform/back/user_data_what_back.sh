@@ -37,7 +37,7 @@ server {
 
 service nginx restart
 
-curl -L -X GET "http://nexus-loadb-6puu3e2x3dzt-1303686621.us-east-2.elb.amazonaws.com/service/rest/v1/search/assets/download?sort=version&repository=what-back-1"\
+curl -L -X GET "http://nexus-loadb-6puu3e2x3dzt-1303686621.us-east-2.elb.amazonaws.com/service/rest/v1/search/assets/download?sort=version&repository=what-api"\
  -H "accept: application/json" --output - | tar -xzf -  -C /opt/whatbackend
 
 
