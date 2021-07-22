@@ -13,7 +13,6 @@ pipeline {
     					sh "dotnet build CharlieBackend.Api"
       				}
 			}
-	}
 	stage('UnitTest Api') {			
 			steps {
 				sh 'dotnet test .'
